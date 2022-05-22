@@ -18,17 +18,14 @@ aminoAcid = oneOf "ABCDEFGHIJKLMNOPQRSTUVWYZX*-"
 
 -- TODO: map toUpper
 parseLine :: Parser String
-parseLine = do
-    line <- many (nucleicAcid <|> aminoAcid)
-    newline
-    return line
+parseLine = newline >> many (nucleicAcid <|> aminoAcid)
 
 parseSequence :: Parser Sequence
 parseSequence = do
     char '>'
     description <- many $ noneOf "\n"
-    char '\n'
     sqn <- many parseLine
+    optional newline
     return $ Sequence description (concat sqn)
 
 parseOne :: String -> Either ParseError Sequence

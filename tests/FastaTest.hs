@@ -7,12 +7,11 @@ import Test.Tasty.HUnit
 main :: IO ()
 main = defaultMain parseTests
 
--- TODO: allow no trailing newline
 oneSeq :: String
 oneSeq =
     ">Description\n\
     \ABC\n\
-    \DEF\n"
+    \DEF"
 
 manySeqs :: String
 manySeqs =
