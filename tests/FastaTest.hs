@@ -10,8 +10,8 @@ main = defaultMain parseTests
 oneSeq :: String
 oneSeq =
     ">Description\n\
-    \ABC\n\
-    \DEF"
+    \AbC\n\
+    \DEf"
 
 manySeqs :: String
 manySeqs =
