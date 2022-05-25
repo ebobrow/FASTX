@@ -10,7 +10,7 @@ import Data.Functor
 import Text.Parsec
 import Text.Parsec.String
 
-data Sequence = Sequence {description :: String, sqn :: String} deriving (Show, Eq)
+data Sequence = Sequence {description :: String, seq :: String} deriving (Show, Eq)
 
 nucleicAcid :: Parser Char
 nucleicAcid = oneOf "ACGTUIRYKMSWBDHVN-"
@@ -26,9 +26,9 @@ parseSequence :: Parser Sequence
 parseSequence = do
     char '>'
     description <- many $ noneOf "\n"
-    sqn <- many parseLine
+    seq <- many parseLine
     optional newline
-    return $ Sequence description (map toUpper $ concat sqn)
+    return $ Sequence description (map toUpper $ concat seq)
 
 parseOne :: String -> Either ParseError Sequence
 parseOne = parse parseSequence ""

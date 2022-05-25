@@ -1,6 +1,6 @@
 module Main where
 
-import Fastx.Fasta
+import qualified Fastx.Fasta as A
 import Test.Tasty
 import Test.Tasty.HUnit
 
@@ -26,11 +26,11 @@ parseTests =
     testGroup
         "FASTA Parsing Tests"
         [ testCase "Read One" $
-            parseOne oneSeq @?= Right (Sequence "Description" "ABCDEF")
+            A.parseOne oneSeq @?= Right (A.Sequence "Description" "ABCDEF")
         , testCase "Read Many" $
-            parseMany manySeqs @?= Right [Sequence "D1" "AGCT", Sequence "D2" "HELLO"]
+            A.parseMany manySeqs @?= Right [A.Sequence "D1" "AGCT", A.Sequence "D2" "HELLO"]
         , testCase "From File" $
-            parseFile
+            A.parseFile
                 "tests/test.fasta"
-                >>= (@=? Right [Sequence "Amino acids" "ABCDEF", Sequence "Nucleic acids" "ACGT"])
+                >>= (@=? Right [A.Sequence "Amino acids" "ABCDEF", A.Sequence "Nucleic acids" "ACGT"])
         ]
