@@ -6,7 +6,7 @@ import Test.Tasty
 import Test.Tasty.HUnit
 
 main :: IO ()
-main = defaultMain parseTests
+main = defaultMain tests
 
 oneSeq :: String
 oneSeq =
@@ -44,8 +44,8 @@ badRepeatSeqname =
     \+invalidname\n\
     \1132345234523455"
 
-parseTests :: TestTree
-parseTests =
+tests :: TestTree
+tests =
     testGroup
         "FASTQ Parsing Tests"
         [ testCase "Read One" $
@@ -68,4 +68,5 @@ parseTests =
                     )
         , testCase "Invalid Quality Length" $ assertBool "" $ isLeft $ Q.parseOne badLenQual
         , testCase "Invalid Repeat Seqname" $ assertBool "" $ isLeft $ Q.parseOne badRepeatSeqname
+        , testCase "Sequence to String" $ Q.write (Q.Sequence "name" "AAAAAAAC" ";;;;;;;;") @?= (oneSeq ++ "\n")
         ]

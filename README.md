@@ -4,7 +4,7 @@ Does stuff with FASTA/Q files
 
 ## TODO (copying [fastx_toolkit](http://hannonlab.cshl.edu/fastx_toolkit/))
 
-- [ ] FASTQ-to-FASTA converter--Convert FASTQ files to FASTA files.
+- [x] FASTQ-to-FASTA converter--Convert FASTQ files to FASTA files.
 - [ ] FASTQ Information--Chart Quality Statistics and Nucleotide Distribution
 - [ ] FASTQ/A Collapser--Collapsing identical sequences in a FASTQ/A file into a single sequence (while maintaining reads counts)
 - [ ] FASTQ/A Trimmer--Shortening reads in a FASTQ or FASTQ files (removing barcodes or noise).

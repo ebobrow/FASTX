@@ -3,6 +3,7 @@ module Fastx.Fastq (
     parseOne,
     parseMany,
     parseFile,
+    write,
 ) where
 
 import Data.Char
@@ -42,3 +43,8 @@ parseMany = parse (many parseSequence) ""
 
 parseFile :: FilePath -> IO (Either ParseError [Sequence])
 parseFile = parseFromFile $ many parseSequence
+
+-- TODO: Max line width before splitting?
+-- TODO: write to file
+write :: Sequence -> String
+write (Sequence seqname seq quality) = '@' : seqname ++ "\n" ++ seq ++ "\n+\n" ++ quality ++ "\n"

@@ -3,6 +3,7 @@ module Fastx.Fasta (
     parseMany,
     parseFile,
     Sequence (..),
+    write,
 ) where
 
 import Data.Char
@@ -38,3 +39,6 @@ parseMany = parse (many parseSequence) ""
 
 parseFile :: FilePath -> IO (Either ParseError [Sequence])
 parseFile = parseFromFile $ many parseSequence
+
+write :: Sequence -> String
+write (Sequence description seq) = '>' : description ++ "\n" ++ seq ++ "\n"

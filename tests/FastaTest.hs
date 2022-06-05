@@ -5,7 +5,7 @@ import Test.Tasty
 import Test.Tasty.HUnit
 
 main :: IO ()
-main = defaultMain parseTests
+main = defaultMain tests
 
 oneSeq :: String
 oneSeq =
@@ -21,8 +21,8 @@ manySeqs =
     \HE\n\
     \LLO\n"
 
-parseTests :: TestTree
-parseTests =
+tests :: TestTree
+tests =
     testGroup
         "FASTA Parsing Tests"
         [ testCase "Read One" $
@@ -33,4 +33,6 @@ parseTests =
             A.parseFile
                 "tests/test.fasta"
                 >>= (@=? Right [A.Sequence "Amino acids" "ABCDEF", A.Sequence "Nucleic acids" "ACGT"])
+        , testCase "Sequence to String" $
+            A.write (A.Sequence "Description" "ABCDEF") @?= ">Description\nABCDEF\n"
         ]
